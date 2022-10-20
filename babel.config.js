@@ -7,6 +7,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
+            '@': './src/app',
             palette: './src/palette',
           },
         },

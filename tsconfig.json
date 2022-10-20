@@ -4,6 +4,9 @@
     "strict": true,
     "baseUrl": "src",
     "paths": {
+      "@/*": [
+        "app/*"
+      ],
       "palette/*": [
         "palette/*"
       ]
