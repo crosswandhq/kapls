@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { StyleSheet, Text, View } from 'react-native';
+import React, { StyleSheet, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
+import { Text } from 'palette';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -20,8 +21,14 @@ export default function App() {
     init();
   }, []);
 
+  useEffect(() => {
+    if (isFontsLoaded && isInitialized) {
+      SplashScreen.hideAsync();
+    }
+  }, [isFontsLoaded, isInitialized]);
+
   if (!isFontsLoaded || !isInitialized) {
-    return <View></View>;
+    return <View />;
   }
 
   return (
