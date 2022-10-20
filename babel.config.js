@@ -8,6 +8,7 @@ module.exports = function (api) {
         {
           alias: {
             '@': './src/app',
+            'assets': './assets',
             palette: './src/palette',
           },
         },
