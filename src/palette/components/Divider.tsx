@@ -14,6 +14,7 @@ export function Divider({
   color,
   thickness,
   vertical,
+  style,
   ...rest
 }: DividerProps) {
   return (
@@ -29,7 +30,7 @@ export function Divider({
             borderTopWidth: thickness ?? 0.5,
             height: 0,
           },
-
+        style,
       ]}
       {...rest}
     />
