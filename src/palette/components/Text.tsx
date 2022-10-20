@@ -1,19 +1,18 @@
 import { forwardRef, type Ref } from 'react';
 import {
-  type StyleProp,
   Text as RNText,
-  type TextStyle,
   type TextProps as RNTextProps,
 } from 'react-native';
 
 export interface TextProps extends RNTextProps {
   bold?: boolean;
-  style?: StyleProp<TextStyle>;
+  size?: number;
 }
 
 export const Text = forwardRef((
   {
     bold,
+    size,
     style,
     ...rest
   }: TextProps,
@@ -23,6 +22,7 @@ export const Text = forwardRef((
     <RNText
       style={[
         style,
+        size && { fontSize: size },
         { fontFamily: bold ? 'Roka-Bold' : 'Roka-Medium' },
       ]}
       ref={ref}
