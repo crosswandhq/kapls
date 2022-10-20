@@ -24,6 +24,7 @@ export function TextWithAnimationPage({
         autoPlay
         source={source}
       />
+      <Spacer height={20} />
       <Text bold size={30}>
         {title}
       </Text>
