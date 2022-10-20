@@ -1,5 +1,4 @@
 import IntroMessage from './IntroMessage';
+import theme from './theme';
 
-export {
-  IntroMessage,
-};
+export { IntroMessage, theme };

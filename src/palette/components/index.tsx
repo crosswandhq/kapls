@@ -1,21 +1,5 @@
-import {
-  Divider,
-  type DividerProps
-} from './Divider';
-import {
-  Spacer,
-  type SpacerProps,
-} from './Spacer';
-import {
-  Text,
-  type TextProps,
-} from './Text';
+import { Divider, DividerProps } from './Divider';
+import { Spacer, SpacerProps } from './Spacer';
+import { Text, TextProps } from './Text';
 
-export {
-  Text,
-  TextProps,
-  Divider,
-  DividerProps,
-  Spacer,
-  SpacerProps,
-};
+export { Text, TextProps, Divider, DividerProps, Spacer, SpacerProps };

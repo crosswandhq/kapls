@@ -1,5 +1,3 @@
 import IntroductionPage from './Intro';
 
-export {
-  IntroductionPage,
-};
+export { IntroductionPage };

@@ -1,3 +1,4 @@
+// eslint-disable-next-line func-names
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -8,7 +9,7 @@ module.exports = function (api) {
         {
           alias: {
             '@': './src/app',
-            'assets': './assets',
+            assets: './assets',
             palette: './src/palette',
           },
         },
