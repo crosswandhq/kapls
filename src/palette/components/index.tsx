@@ -1,9 +1,15 @@
 import {
+  Divider,
+  type DividerProps
+} from './Divider';
+import {
   Text,
-  TextProps,
+  type TextProps,
 } from './Text';
 
 export {
   Text,
   TextProps,
+  Divider,
+  DividerProps,
 };
