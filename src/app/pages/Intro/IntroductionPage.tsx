@@ -18,7 +18,7 @@ function IntroductionPage() {
   }, [pageIdx]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: 'white' }]}>
       <PagerView
         ref={pagerViewRef}
         style={styles.innerContainer}
