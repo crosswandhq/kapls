@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { RealmContext } from '@/contexts';
 import { base64ToArray, getOrInitEncryptionKey } from '@/utils';
 import { useSettings } from '@/stores';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RootStackNavigator } from '@/RootStackNavigator';
 
 SplashScreen.preventAutoHideAsync();
@@ -42,11 +43,13 @@ export default function App() {
 
   return (
     <RealmProvider encryptionKey={encryptionKey!}>
-      <NavigationContainer>
-        <RootStackNavigator />
-        {/* eslint-disable-next-line react/style-prop-object */}
-        <StatusBar style='auto' />
-      </NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <RootStackNavigator />
+          {/* eslint-disable-next-line react/style-prop-object */}
+          <StatusBar style='auto' />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </RealmProvider>
   );
 }
