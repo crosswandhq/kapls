@@ -1,21 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { StyleSheet, View } from 'react-native';
+import React, { View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
-import { Text } from 'palette';
+import { NavigationContainer } from '@react-navigation/native';
+import { RealmContext } from '@/contexts';
+import { base64ToArray, getOrInitEncryptionKey } from '@/utils';
+import { useSettings } from '@/stores';
+import { RootStackNavigator } from '@/RootStackNavigator';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const { RealmProvider } = RealmContext;
   const [isInitialized, setInitialized] = useState(false);
   const [isFontsLoaded] = useFonts({
     'Roka-Medium': require('./assets/fonts/roka_medium.ttf'),
     'Roka-Bold': require('./assets/fonts/roka_medium.ttf'),
   });
+  const [encryptionKey, setEncryptionKey] = useState<Int8Array | null>(null);
 
   useEffect(() => {
     const init = async () => {
+      const key = base64ToArray(await getOrInitEncryptionKey());
+      await useSettings.getState().initialize();
+      setEncryptionKey(key);
       setInitialized(true);
     };
     init();
@@ -32,19 +41,12 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      {/* eslint-disable-next-line react/style-prop-object */}
-      <StatusBar style='auto' />
-    </View>
+    <RealmProvider encryptionKey={encryptionKey!}>
+      <NavigationContainer>
+        <RootStackNavigator />
+        {/* eslint-disable-next-line react/style-prop-object */}
+        <StatusBar style='auto' />
+      </NavigationContainer>
+    </RealmProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

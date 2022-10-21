@@ -4,9 +4,17 @@ import { StyleSheet, View } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { IntroMessage } from '@/constants';
 import { Button } from '@/components';
+import { StackScreenProps } from '@react-navigation/stack';
+import { useSettings } from '@/stores';
 import { TextWithAnimationPage } from './TextWithAnimationPage';
+import { RootStackParamList } from '@/RootStackNavigator';
 
-function IntroductionPage() {
+type IntroductionPageProps = StackScreenProps<
+  RootStackParamList,
+  'Introduction'
+>;
+
+function IntroductionPage({ navigation }: IntroductionPageProps) {
   const [pageIdx, setPageIdx] = useState(0);
   const pagerViewRef = useRef<PagerView | null>(null);
 
@@ -16,6 +24,10 @@ function IntroductionPage() {
   const scrollToPreviousPage = useCallback(() => {
     pagerViewRef.current?.setPage(pageIdx - 1);
   }, [pageIdx]);
+  const navigateTo = useCallback(async () => {
+    await useSettings.getState().setValue('isFirstOpen', 'false');
+    navigation.replace('TabNav');
+  }, [navigation]);
 
   return (
     <View style={[styles.container, { backgroundColor: 'white' }]}>
@@ -60,7 +72,9 @@ function IntroductionPage() {
           }
           color='black'
           size={20}
-          onPress={scrollToNextPage}
+          onPress={
+            pageIdx === IntroMessage.length - 1 ? navigateTo : scrollToNextPage
+          }
         />
       </View>
     </View>
