@@ -23,5 +23,7 @@ module.exports = {
     'react/require-default-props': 0,
     'import/no-extraneous-dependencies': 0,
     'react-native/no-inline-styles': 0,
+    'no-plusplus': 0,
+    'no-bitwise': 0,
   },
 };
